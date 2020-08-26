@@ -70,11 +70,7 @@ def norminit(so,se,po,pe):
     bpy.data.objects['cone'].parent = e[1]
     return e
 
-def som(p0,p1,p3):
-    tuple_add = lambda a, b: tuple(i+j for i, j in zip(a, b))
-    v1 = norminit('orig','ext', p0, p1)
-    v2 = norminit('orig','ext', v1[1].location, p3)
-    v3 = norminit('orig','ext', v1[0].location, tuple_add(v1[1].location,v2[1].location))
+def relat(v1,v2,v3):
     v2[0].parent = v1[1]
     v2[0].matrix_parent_inverse = v1[1].matrix_world.inverted()
     v3[0].parent = v1[0]
@@ -82,17 +78,21 @@ def som(p0,p1,p3):
     v3[1].parent = v2[1]
     v3[1].matrix_parent_inverse = v2[1].matrix_world.inverted()
 
+
+def som(p0,p1,p3):
+    tuple_add = lambda a, b: tuple(i+j for i, j in zip(a, b))
+    v1 = norminit('orig','ext', p0, p1)
+    v2 = norminit('orig','ext', v1[1].location, p3)
+    v3 = norminit('orig','ext', v1[0].location, tuple_add(v1[1].location,v2[1].location))
+    relat(v1,v2,v3)
+
+
 def somo(p1,p3):
     tuple_add = lambda a, b: tuple(i+j for i, j in zip(a, b))
     v1 = norminit('orig','ext', (0,0,0), p1)
     v2 = norminit('orig','ext', v1[0].location, p3)
     v3 = norminit('orig','ext', v1[0].location, tuple_add(v1[1].location,v2[1].location))
-    v2[0].parent = v1[1]
-    v2[0].matrix_parent_inverse = v1[1].matrix_world.inverted()
-    v3[0].parent = v1[0]
-    v3[0].matrix_parent_inverse = v1[0].matrix_world.inverted()
-    v3[1].parent = v2[1]
-    v3[1].matrix_parent_inverse = v2[1].matrix_world.inverted()
+    relat(v1,v2,v3)
 
 
 def sub(p0,p1,p3):
@@ -101,12 +101,7 @@ def sub(p0,p1,p3):
     v1 = norminit('orig','ext', p0, p1)
     v2 = norminit('orig','ext', v1[1].location, p3)
     v3 = norminit('orig','ext', v1[0].location, tuple_add(v1[1].location,tuple_inv(v2[1].location)))
-    v2[0].parent = v1[1]
-    v2[0].matrix_parent_inverse = v1[1].matrix_world.inverted()
-    v3[0].parent = v1[0]
-    v3[0].matrix_parent_inverse = v1[0].matrix_world.inverted()
-    v3[1].parent = v2[1]
-    v3[1].matrix_parent_inverse = v2[1].matrix_world.inverted()
+    relat(v1,v2,v3)
 
 
 def subo(p1,p3):
@@ -115,12 +110,7 @@ def subo(p1,p3):
     v1 = norminit('orig','ext', (0,0,0), p1)
     v2 = norminit('orig','ext', v1[0].location, p3)
     v3 = norminit('orig','ext', v1[0].location, tuple_add(v1[1].location,tuple_inv(v2[1].location)))
-    v2[0].parent = v1[1]
-    v2[0].matrix_parent_inverse = v1[1].matrix_world.inverted()
-    v3[0].parent = v1[0]
-    v3[0].matrix_parent_inverse = v1[0].matrix_world.inverted()
-    v3[1].parent = v2[1]
-    v3[1].matrix_parent_inverse = v2[1].matrix_world.inverted()    
+    relat(v1,v2,v3)    
 
 #som((0,0,0),(1,1,1),(2,3,2))
 #sub((0,0,0),(1,1,1),(2,3,2))
