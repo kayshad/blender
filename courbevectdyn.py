@@ -44,7 +44,22 @@ def creempty(vec):
     coll.objects.link(flech)
     coll.objects.link(norme)
     return orig, coll
-    
+
+
+def vec():
+    Koll = bpy.data.collections.new('vector')
+    SC.link(Koll)
+    veco = mathutils.Vector((0.0, 0.0, 0.0))
+    veco_n = veco.normalized()
+    retour = creempty(veco)
+    collectreturn = retour[1]
+    Koll.children.link(collectreturn)
+    SC.unlink(collectreturn)
+
+
+
+
+
 def chvec(n):
     Koll = bpy.data.collections.new('ChampVecteur')
     SC.link(Koll)
