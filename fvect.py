@@ -83,7 +83,7 @@ def vect(vec):
     var.type='LOC_DIFF'
     var.targets[0].id = orig  
     var.targets[1].id = flech
-    drv.driver.expression = var.name  + '* 0.99'
+    drv.driver.expression = var.name  + '* 0.95'
     orig.location = vec[:]
     return Koll
 
