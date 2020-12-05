@@ -6,7 +6,7 @@ D, OBJ, CUR = bpy.data, bpy. data. objects, bpy.data.curves
 def grad():
     mat = bpy.data.materials.new('nombre')
     coll = bpy.data.collections.new('Graduation')
-    bpy.context.scene.collection.children.link(coll)
+    D.scenes["Scene"].collection.children.link(coll)
     extrem = D.objects.new('unit', None)
     extrem.location = (1,0,0)
     coll.objects.link(extrem)
