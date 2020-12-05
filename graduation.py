@@ -8,7 +8,8 @@ def grad():
     coll = bpy.data.collections.new('Graduation')
     D.scenes["Scene"].collection.children.link(coll)
     extrem = D.objects.new('unit', None)
-    extrem.location = (1,0,0)
+    extrem.empty_display_type = 'SINGLE_ARROW'
+    extrem.location = (0,0,0)
     coll.objects.link(extrem)
     
     for i in range(-50,51):
